@@ -31,7 +31,7 @@ app.use(
   })
 );
 
-// ========== routes ================= //
+// ========================== routes ================= //
 app.use(passUserToView)
 app.get('/', (req, res) => {
   res.render('index.ejs', {
