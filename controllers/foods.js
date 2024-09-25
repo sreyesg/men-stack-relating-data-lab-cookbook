@@ -1,12 +1,13 @@
 const express = require('express')
 const User = require('../models/user.js')
-const { route } = require('./auth.js')
 const router = express.Router()
 
 // Index
 router.get('/', async(req, res) => {
     try {
         const currentUser = await User.findById(req.session.user._id)
+        console.log(currentUser)
+        console.log(currentUser.pantry)
         if(currentUser.pantry === null){
             res.send('There are no items to show')
         }else{

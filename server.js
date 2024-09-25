@@ -9,7 +9,7 @@ const session = require('express-session');
 // ============= Import controller ======================= //
 const authController = require('./controllers/auth.js');
 const foodsController = require('./controllers/foods.js');
-
+const communityController = require('./controllers/community.js')
 // ============ import midlleware ====================== //
 
 const passUserToView = require('./middleware/pass-user-to-view.js');
@@ -53,7 +53,10 @@ app.get('/', (req, res) => {
 
 app.use('/auth', authController);
 app.use(isSignedIn)
+app.use('/community', communityController)
+
 app.use('/users/:userId/foods', foodsController)
+
 
 app.listen(port, () => {
   console.log(`The express app is ready on port ${port}!`);

@@ -1,7 +1,8 @@
 <nav>
     <%if(user) { %>
         <a href="/users/<%= user._id %>/foods">View my Pantry</a>
-        <a href="">sign Out</a>
+        <a href="/community">Link to Our Community Page</a>
+        <a href="/auth/sign-out">sign Out</a>
     
     <% }else { %>
             <a href="/auth/sign-up">Sign Up</a>

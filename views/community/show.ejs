@@ -1,0 +1,21 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title><%= member.username %></title>
+</head>
+<body>
+    <h1><%= member.username %> Pantry</h1>
+    
+    
+    <%pantry.forEach((food) => {%>    
+        <ul>
+            <li>
+                <%= food.name %>
+            </li>
+        </ul>
+    
+    <%})%>
+</body>
+</html>
