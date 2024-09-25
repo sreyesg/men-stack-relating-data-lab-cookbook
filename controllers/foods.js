@@ -1,5 +1,6 @@
 const express = require('express')
 const User = require('../models/user.js')
+const { route } = require('./auth.js')
 const router = express.Router()
 
 // Index
@@ -32,7 +33,7 @@ router.post('/', async (req, res) => {
         const currentUser = await User.findById(req.session.user._id)
         currentUser.pantry.push(req.body)
         
-        currentUser.save()
+        await currentUser.save()
         res.redirect(`/users/${req.session.user._id}/foods`)
     } catch (error) {
         console.log(error)
@@ -46,7 +47,7 @@ router.delete('/:foodId', async(req, res)=>{
     try {
         const currentUser = await User.findById(req.session.user._id)
         currentUser.pantry.id(req.params.foodId).deleteOne()
-        currentUser.save()
+        await currentUser.save()
         // redirect to index
         res.redirect(`/users/${req.session.user._id}/foods`)
         
@@ -56,6 +57,36 @@ router.delete('/:foodId', async(req, res)=>{
     }
 })
 
+
+// Show Edit Route Form
+router.get('/:foodId/edit', async (req, res) => {
+    try {
+        const currentUser =  await User.findById(req.session.user._id)
+        const food = currentUser.pantry.id(req.params.foodId)
+        res.render('foods/edit.ejs',{
+            food,
+        })
+        
+    } catch (error) {
+        console.log(error)
+        res.redirect('/')
+    }
+})
+
+// Edit Route
+router.put('/:foodId', async (req, res) => {
+    try {
+        const currentUser =  await User.findById(req.session.user._id)
+        const food = currentUser.pantry.id(req.params.foodId)
+        food.set(req.body)
+        await currentUser.save()
+        res.redirect(`/users/${req.session.user._id}/foods`)
+
+    } catch (error) {
+        console.log(error)
+        res.redirect('/')
+    }
+})
 
 
 // Exports

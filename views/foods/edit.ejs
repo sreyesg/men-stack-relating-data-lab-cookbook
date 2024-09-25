@@ -3,9 +3,16 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
+    <title><%= food.name %></title>
 </head>
 <body>
-    <%- include('./partials/navbar.ejs')%>
+    <%- include('../partials/navbar.ejs')%>
+    <div class="new-body">
+        <form action="/users/<%= user._id %>/foods/<%= food._id%>?_method=PUT" method="POST">
+            <label for="name">Food Name</label>
+            <input type="text" name="name" id="name" value="<%=food.name%>">
+            <button type="submit">Update <%= food.name%></button>
+        </form>
+    </div> 
 </body>
 </html>
