@@ -6,6 +6,13 @@
     <title>Document</title>
 </head>
 <body>
-    <%- include('./partials/navbar.ejs')%>
+    <%- include('../partials/navbar.ejs')%>
+    <div class="new-body">
+        <form action="/users/<%= user._id %>/foods" method="POST">
+            <label for="name">Food Name</label>
+            <input type="text" name="name" id="name">
+            <button type="submit">Create New Food</button>
+        </form>
+    </div> 
 </body>
 </html>
