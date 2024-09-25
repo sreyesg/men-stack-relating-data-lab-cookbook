@@ -6,8 +6,7 @@ const router = express.Router()
 router.get('/', async(req, res) => {
     try {
         const currentUser = await User.findById(req.session.user._id)
-        console.log(currentUser)
-        console.log(currentUser.pantry)
+        
         if(currentUser.pantry === null){
             res.send('There are no items to show')
         }else{

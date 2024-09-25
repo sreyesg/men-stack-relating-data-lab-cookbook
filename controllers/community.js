@@ -12,10 +12,7 @@ router.get('/', async(req, res) => {
 
 // Show Page for single user's pantries
 router.get('/:username', async(req,res) => {
-    console.log('you reached the comm show')
     const member = await User.findOne({username: req.params.username})
-    console.log(member.pantry)
-    
     res.render('community/show.ejs', {
         member,
         pantry: member.pantry,
